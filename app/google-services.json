@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "202323822811",
+    "project_id": "gympt-ac38a",
+    "storage_bucket": "gympt-ac38a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202323822811:android:4570a47b70805fb97ca4fe",
+        "android_client_info": {
+          "package_name": "com.example.healthapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkaaA30QPw0W0XicZ11fJ-seed1zWU-bI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
