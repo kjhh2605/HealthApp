@@ -47,23 +47,35 @@ public class RegisterActivity extends AppCompatActivity {
         squat = findViewById(R.id.et_squat);
         deadlift = findViewById(R.id.et_deadlift);
 
-        // onCreate() 내부에 추가
         TextWatcher watcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String nickname = etNickName.getText().toString().trim();
                 String pw = etPw.getText().toString();
                 String pwConfirm = etPwConfirm.getText().toString();
-                btnRegister.setEnabled(!pw.isEmpty() && pw.equals(pwConfirm));
+                String benchStr = bench.getText().toString().trim();
+                String squatStr = squat.getText().toString().trim();
+                String deadliftStr = deadlift.getText().toString().trim();
+
+                // 모든 항목 입력 && 비밀번호 일치
+                boolean allFilled = !nickname.isEmpty() && !pw.isEmpty() && !pwConfirm.isEmpty()
+                        && !benchStr.isEmpty() && !squatStr.isEmpty() && !deadliftStr.isEmpty();
+
+                btnRegister.setEnabled(allFilled && pw.equals(pwConfirm));
             }
 
             @Override
             public void afterTextChanged(Editable s) { }
         };
+        etNickName.addTextChangedListener(watcher);
         etPw.addTextChangedListener(watcher);
         etPwConfirm.addTextChangedListener(watcher);
+        bench.addTextChangedListener(watcher);
+        squat.addTextChangedListener(watcher);
+        deadlift.addTextChangedListener(watcher);
 
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
