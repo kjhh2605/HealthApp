@@ -1,12 +1,12 @@
-package com.example.healthapp.ui.login;
+package com.example.healthapp.model;
 
-public class UserAccount {
+public class User {
     private String nickName;
     private String userToken;
     private String email;
     private String password;
     private int bench, squat, deadlift;
-    public UserAccount() {}
+    public User() {}
 
     public String getUserToken() {
         return userToken;

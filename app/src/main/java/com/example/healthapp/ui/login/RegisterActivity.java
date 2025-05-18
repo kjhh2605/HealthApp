@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthapp.R;
+import com.example.healthapp.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,7 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String email;
     private EditText etNickName,etPw, etPwConfirm;
     private EditText bench, squat, deadlift;
-    private Button btnRegister;
+    private Button btnRegister,btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         etPw = findViewById(R.id.et_pw);
         etPwConfirm = findViewById(R.id.et_pw_confirm);
         btnRegister = findViewById(R.id.btn_register);
+        btnBack = findViewById(R.id.btn_back);
         bench = findViewById(R.id.et_bench);
         squat = findViewById(R.id.et_squat);
         deadlift = findViewById(R.id.et_deadlift);
@@ -76,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                         // 회원가입 성공
                         if(task.isSuccessful()){
                             FirebaseUser user = mAuth.getCurrentUser();
-                            UserAccount account = new UserAccount();
+                            User account = new User();
                             account.setUserToken(user.getUid());
                             account.setNickName(etNickName.getText().toString());
                             account.setEmail(user.getEmail());
@@ -94,5 +96,13 @@ public class RegisterActivity extends AppCompatActivity {
                 });
             }
         });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 }

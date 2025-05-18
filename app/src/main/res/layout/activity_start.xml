@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="32dp"
+            android:gravity="center_horizontal">
+
+            <!-- 앱 슬로건 -->
+            <TextView
+                android:id="@+id/tvSlogan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="나를 위한 운동 정보"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"/>
+
+            <!-- 앱 이름 -->
+            <TextView
+                android:id="@+id/tvAppName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GYMPT"
+                android:textStyle="bold"
+                android:textSize="32sp"
+                android:textColor="#000000"
+                android:gravity="center"/>
+
+            <!-- 부제목 -->
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gym-Personal-Talk"
+                android:textSize="16sp"
+                android:textColor="#444444"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"/>
+
+            <!-- 계정 생성 안내 -->
+            <TextView
+                android:id="@+id/tvCreateAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="계정을 만들어주세요"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_marginBottom="4dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/tvEmailGuide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="이메일을 입력하여 회원가입을 진행하세요"
+                android:textColor="#666666"
+                android:textSize="14sp" />
+
+            <!-- 이메일 입력창 -->
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="email@domain.com"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/login_et_bg"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"/>
+            <!-- 계속하기 버튼 -->
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="계속하기"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:background="#000000"
+                android:layout_marginBottom="16dp"/>
+            <!-- 구분선 및 텍스트 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="1dp"
+                    android:background="#DDDDDD"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" or "
+                    android:textColor="#888888"
+                    android:textSize="14sp"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="1dp"
+                    android:background="#DDDDDD"/>
+            </LinearLayout>
+
+
+            <!-- 구글 로그인 버튼 -->
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/btn_google_login"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="center_vertical"/>
+            <!-- 카카오 로그인 버튼 -->
+            <Button
+                android:id="@+id/btn_kakao_login"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#F5F5F5"
+                android:gravity="center_vertical"
+                android:text="카카오 계정으로 로그인"
+                android:textAllCaps="false"
+                android:textColor="#222222"
+                android:layout_marginBottom="32dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 하단 고정 영역 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="32dp"
+        android:paddingBottom="32dp">
+
+        <!-- 구분선 및 텍스트 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="1dp"
+                android:background="#DDDDDD"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 계정이 있으신가요? "
+                android:textColor="#888888"
+                android:textSize="14sp"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="1dp"
+                android:background="#DDDDDD"/>
+        </LinearLayout>
+
+        <!-- 이메일 로그인 버튼 -->
+        <Button
+            android:id="@+id/btn_email_login"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#BCBCBC"
+            android:gravity="center"
+            android:text="이메일 계정으로 로그인"
+            android:textAllCaps="false"
+            android:textColor="#222222" />
+    </LinearLayout>
+</LinearLayout>

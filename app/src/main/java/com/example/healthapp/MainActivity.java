@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.healthapp.ui.login.LoginActivity;
+import com.example.healthapp.ui.login.StartActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (!isLoggedIn) {
             // 로그인 화면으로 이동
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, StartActivity.class);
             startActivity(intent);
             finish(); // MainActivity 종료 (뒤로가기 시 로그인화면 안 나오게)
             return;
