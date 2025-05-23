@@ -80,7 +80,7 @@
                 android:layout_height="48dp"
                 android:hint="이메일을 입력해 주세요"
                 android:inputType="textEmailAddress"
-                android:background="@drawable/login_et_bg"
+                android:background="@drawable/square_bg"
                 android:padding="12dp"
                 android:layout_marginBottom="16dp"/>
             <!-- 계속하기 버튼 -->

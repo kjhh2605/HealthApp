@@ -11,13 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthapp.R;
+import com.example.healthapp.repository.MyFirebaseDB;
+import com.example.healthapp.repository.UserRepository;
 import com.example.healthapp.ui.HomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class EmailLoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth; // 파이어베이스 인증
@@ -30,7 +32,7 @@ public class EmailLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_email_login);
 
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference("GYMPT");
+        mDatabase = MyFirebaseDB.getDB();
 
         btnLogin = findViewById(R.id.btn_login);
         etEmail = findViewById(R.id.et_email);
@@ -50,8 +52,28 @@ public class EmailLoginActivity extends AppCompatActivity {
                             // 로그인 성공
                             Intent intent = new Intent(EmailLoginActivity.this, HomeActivity.class);
                             startActivity(intent);
-                            String nickname = task.getClass().getName();
-                            Toast.makeText(EmailLoginActivity.this, nickname+"님 환영합니다", Toast.LENGTH_SHORT).show();
+                            // User 엔티티에서 닉네임 가져오기
+                            UserRepository userRepository = new UserRepository();
+                            userRepository.getNickname(new UserRepository.NicknameCallback() {
+                                @Override
+                                public void onNicknameLoaded(String nickname) {
+                                    Toast.makeText(EmailLoginActivity.this, nickname + "님 환영합니다", Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent(EmailLoginActivity.this, HomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+                                @Override
+                                public void onError(DatabaseError error) {
+                                    Toast.makeText(EmailLoginActivity.this, "닉네임 불러오기 실패", Toast.LENGTH_SHORT).show();
+
+                                    // 닉네임 없이도 홈 화면 이동은 가능하게 설정
+                                    Intent intent = new Intent(EmailLoginActivity.this, HomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
                             finish();
                         }else{
                             Toast.makeText(EmailLoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();

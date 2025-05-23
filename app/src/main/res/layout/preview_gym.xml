@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 헬스장 이름 -->
+        <TextView
+            android:id="@+id/tv_gym_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="헬스장 이름"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#222222"/>
+
+        <!-- 지역 -->
+        <TextView
+            android:id="@+id/tv_gym_region"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="지역"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginTop="2dp"/>
+
+        <!-- 가격 -->
+        <TextView
+            android:id="@+id/tv_gym_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="월 70,000원"
+            android:textSize="14sp"
+            android:textColor="#1976D2"
+            android:layout_marginTop="2dp"/>
+
+        <!-- 대표 기구 2개 정도 표시 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/tv_machine1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#벤치프레스"
+                android:textSize="13sp"
+                android:textColor="#388E3C"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tv_machine2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#런닝머신"
+                android:textSize="13sp"
+                android:textColor="#388E3C"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

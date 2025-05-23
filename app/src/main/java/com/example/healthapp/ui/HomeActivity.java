@@ -7,9 +7,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.healthapp.ui.workout.WorkoutFragment;
-import com.example.healthapp.ui.home.HomeFragment;
 import com.example.healthapp.R;
+import com.example.healthapp.ui.gym.SearchGymFragment;
+import com.example.healthapp.ui.home.HomeFragment;
+import com.example.healthapp.ui.workout.WorkoutFragment;
 
 public class HomeActivity extends AppCompatActivity {
     private TextView tabHome, tabRecord, tabSearch;
@@ -38,6 +39,13 @@ public class HomeActivity extends AppCompatActivity {
                 loadFragment(new WorkoutFragment());
             }
         });
+        tabSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new SearchGymFragment());
+            }
+        });
+
     }
 
     private void loadFragment(Fragment fragment) {
