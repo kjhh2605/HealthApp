@@ -14,6 +14,8 @@ import com.example.healthapp.ui.workout.WorkoutFragment;
 
 public class HomeActivity extends AppCompatActivity {
     private TextView tabHome, tabRecord, tabSearch;
+    private Fragment homeFragment, workoutFragment, searchGymFragment;
+    private Fragment activeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,33 +26,45 @@ public class HomeActivity extends AppCompatActivity {
         tabRecord = findViewById(R.id.tab_record);
         tabSearch = findViewById(R.id.tab_search);
 
-        // 처음 화면에 HomeFragment 표시
-        loadFragment(new WorkoutFragment());
+        homeFragment = new HomeFragment();
+        workoutFragment = new WorkoutFragment();
+        searchGymFragment = new SearchGymFragment();
+
+        // 처음에 모든 프래그먼트 add, workoutFragment만 show
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, homeFragment, "HOME").hide(homeFragment)
+                .add(R.id.fragment_container, workoutFragment, "WORKOUT")
+                .add(R.id.fragment_container, searchGymFragment, "SEARCH").hide(searchGymFragment)
+                .commit();
+
+        activeFragment = workoutFragment;
 
         tabHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new HomeFragment());
+                switchFragment(homeFragment);
             }
         });
         tabRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new WorkoutFragment());
+                switchFragment(workoutFragment);
             }
         });
         tabSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new SearchGymFragment());
+                switchFragment(searchGymFragment);
             }
         });
-
     }
 
-    private void loadFragment(Fragment fragment) {
+    private void switchFragment(Fragment fragment) {
+        if (activeFragment == fragment) return;
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, fragment)
+                .hide(activeFragment)
+                .show(fragment)
                 .commit();
+        activeFragment = fragment;
     }
 }

@@ -2,9 +2,9 @@ package com.example.healthapp.model;
 
 public class WorkOutRecord {
     private String name;
-    private String manufacturer;
-    private String sub; // 그립 종류
-    private int reps;
     private int weight;
+    private int cnt;
+    private String manufacturer;
+    private String etc;
     private String date;
 }

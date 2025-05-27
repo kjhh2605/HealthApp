@@ -13,74 +13,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp">
 
-        <!-- 운동 이름 + 횟수 + spinner3 한 줄에 -->
+        <!-- 운동 이름 + 무게 + 횟수 한 줄에 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="12dp">
+            android:layout_marginBottom="16dp">
 
-            <!-- 운동 이름 (5) -->
+            <!-- 운동 이름 (3) -->
             <EditText
                 android:id="@+id/etExerciseName"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
+                android:layout_height="48dp"
+                android:layout_weight="3"
                 android:background="@android:color/transparent"
                 android:hint="운동 이름"
-                android:inputType="textPersonName"
-                android:maxLines="1"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:paddingEnd="8dp"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <!-- X(1) + 횟수(2) 묶음 (총 weight: 3) -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingEnd="8dp">
-
-                <!-- X (1) -->
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textSize="20sp"/>
-
-                <!-- 횟수 (2) -->
-                <EditText
-                    android:id="@+id/etCount"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:hint="횟수"
-                    android:inputType="number"
-                    android:maxLines="1"
-                    android:gravity="center" />
-            </LinearLayout>
-
-            <!-- Spinner3 (3) -->
+                android:maxLines="1"/>
             <Spinner
                 android:id="@+id/spinner3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"/>
+                android:layout_weight="1"
+                android:layout_marginEnd="12dp"/>
+
+
         </LinearLayout>
-
-
         <!-- 옵션(스피너1, 2)들을 가로로 배치 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
 
             <Spinner
                 android:id="@+id/spinner1"
@@ -95,6 +64,80 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
         </LinearLayout>
+
+        <!-- 아래쪽: Spinner3 + +버튼 같은 라인 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="start|center_vertical">
+            <!-- 무게 입력 (2) -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingEnd="8dp">
+
+                <EditText
+                    android:id="@+id/etWeight"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:hint="무게"
+                    android:inputType="numberDecimal"
+                    android:gravity="center"
+                    android:background="?android:attr/editTextBackground"
+                    android:textSize="16sp"
+                    android:maxLines="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="kg"
+                    android:textSize="16sp"
+                    android:paddingStart="4dp"/>
+            </LinearLayout>
+
+
+            <!-- 횟수 입력 (2) -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="2"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingEnd="8dp">
+                <EditText
+                    android:id="@+id/etCount"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:hint="횟수"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:background="?android:attr/editTextBackground"
+                    android:textSize="16sp"
+                    android:maxLines="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="회"
+                    android:textSize="16sp"
+                    android:paddingStart="4dp"/>
+            </LinearLayout>
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnAddSet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:tint="@android:color/white"
+                android:src="@android:drawable/ic_input_add"/>
+        </LinearLayout>
+
+
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

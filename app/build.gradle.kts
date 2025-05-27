@@ -50,6 +50,9 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.15.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.0") // androidx 대응
 
+    implementation ("com.google.android.material:material:1.4.0'") // 또는 최신 버전
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
