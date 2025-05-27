@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="part_back_chest">#FFCDD2</color>    <!-- 가슴 -->
+    <color name="part_back_back">#BBDEFB</color>     <!-- 등 -->
+    <color name="part_back_leg">#C8E6C9</color>      <!-- 하체 -->
+    <color name="part_back_shoulder">#FFF9C4</color> <!-- 어깨 -->
+    <color name="part_back_arm">#E1BEE7</color>      <!-- 팔 -->
+    <color name="part_back_default">#FFFFFF</color>  <!-- 기본값 -->
 </resources>

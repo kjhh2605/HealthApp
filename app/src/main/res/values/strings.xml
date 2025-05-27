@@ -11,4 +11,57 @@
     <string name="login_failed">"Login failed"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="machine_array">
+        <item>선택안함</item>
+        <!-- 외산 브랜드 -->
+        <item>해머스트렝스</item>
+        <item>싸이벡스</item>
+        <item>파나타</item>
+        <item>테크노짐</item>
+        <item>짐80</item>
+        <item>프리코어</item>
+        <item>라이프 피트니스</item>
+        <item>왓슨</item>
+        <item>아틀란티스</item>
+        <item>프라임</item>
+        <item>너틸러스</item>
+        <item>매트릭스</item>
+        <!-- 국산 브랜드 -->
+        <item>뉴텍</item>
+        <item>디렉스</item>
+        <item>개선스포츠</item>
+        <item>다이나포스</item>
+        <item>렉스코</item>
+        <item>포커스</item>
+        <item>신코</item>
+    </string-array>
+    <string-array name="part_array">
+        <item>선택안함</item>
+        <item>등</item>
+        <item>등(상부)</item>
+        <item>등(하부)</item>
+        <item>가슴</item>
+        <item>가슴(위)</item>
+        <item>가슴(아래)</item>
+        <item>어깨</item>
+        <item>어깨(전면)</item>
+        <item>어깨(후면)</item>
+        <item>어깨(측면)</item>
+        <item>이두</item>
+        <item>삼두</item>
+        <item>하체(전면)</item>
+        <item>하체(후면)</item>
+    </string-array>
+    <string-array name="etc_array">
+        <item>선택 안함</item>
+        <item>원암</item>
+        <item>와이드 그립</item>
+        <item>내로우 그립</item>
+        <item>언더 그립</item>
+        <item>오버 그립</item>
+        <item>네거티브</item>
+    </string-array>
+
+
 </resources>

@@ -40,7 +40,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:hint="찾는 기구가 있으신가요?"
                 android:textSize="16sp"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
@@ -91,10 +90,10 @@
             android:layout_marginStart="8dp"/>
 
         <TextView
-            android:id="@+id/tv_result_count"
+            android:id="@+id/result_count"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
-            android:text="99 results"
+            android:text=""
             android:textColor="#888888"
             android:textSize="14sp"
             android:gravity="center_vertical"

@@ -2,6 +2,7 @@ package com.example.healthapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthapp.ui.login.StartActivity;
@@ -9,6 +10,7 @@ import com.example.healthapp.ui.login.StartActivity;
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         // 예시: 로그인 상태 체크 (여기서는 무조건 로그인 화면으로 이동)

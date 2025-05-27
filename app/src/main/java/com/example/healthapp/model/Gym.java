@@ -6,7 +6,7 @@ public class Gym {
 //    private List<Machine> machineList;
     //private List<Trainer> trainerList;
     private int price;
-
+    public Gym() {}
     public Gym(String name, String region, int price) {
         this.name = name;
         this.region = region;

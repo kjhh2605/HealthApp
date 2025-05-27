@@ -1,10 +1,13 @@
 package com.example.healthapp.ui.gym;
 
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +33,8 @@ public class SearchGymFragment extends Fragment {
     private DatabaseReference myDB;
     private List<Gym> gymList;
 
+    private EditText editSearch;
+    private TextView resultCount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,12 +45,16 @@ public class SearchGymFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // 1. RecyclerView 연결
         recyclerView = view.findViewById(R.id.recycler_gym);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         myDB = MyFirebaseDB.getDB().child("Gym");
         gymList = new ArrayList<>();
+        resultCount = view.findViewById(R.id.result_count);
+
+        // 초기 검색창 힌트 설정
+        editSearch = view.findViewById(R.id.edit_search);
+        setRandomHint();
 
         myDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -56,6 +65,7 @@ public class SearchGymFragment extends Fragment {
                     gymList.add(gym);
                 }
                 adapter.notifyDataSetChanged(); //리스트 저장 & 새로고침
+                resultCount.setText("전체 "+String.valueOf(gymList.size())+"개");
             }
 
             @Override
@@ -64,6 +74,7 @@ public class SearchGymFragment extends Fragment {
             }
         });
 
+
         // 2. Adapter 생성 및 연결
         adapter = new GymAdapter(gymList,this.getContext());
         recyclerView.setAdapter(adapter);
@@ -71,4 +82,35 @@ public class SearchGymFragment extends Fragment {
 
 
     }
+    @Override
+    public void onResume(){
+        super.onResume();
+        setRandomHint();
+    }
+    private void setRandomHint() {
+        String[][] hints = {
+                {"찾는 기구가 있으신가요?", "ex)해머 스트렝스 로우로우"},
+                {"내가 원하는 트레이너 경력은?", "ex)스포츠지도사"},
+                {"우리 동네 헬스장은?", "ex)성북구"}
+        };
+
+        int randomIndex = new java.util.Random().nextInt(hints.length);
+        String mainHint = hints[randomIndex][0];
+        String example = hints[randomIndex][1];
+
+        // 줄바꿈 및 ex 부분 작은 글씨 적용
+        SpannableStringBuilder ssb = new SpannableStringBuilder();
+        ssb.append(mainHint);
+        ssb.append("\n");
+        int start = ssb.length();
+        ssb.append(example);
+        int end = ssb.length();
+        ssb.setSpan(new android.text.style.RelativeSizeSpan(0.8f), start, end, 0); // 작은 글씨
+        ssb.setSpan(new android.text.style.ForegroundColorSpan(0xFF888888), start, end, 0); // 회색
+
+        if (editSearch != null) {
+            editSearch.setHint(ssb);
+        }
+    }
+
 }
