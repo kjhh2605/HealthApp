@@ -30,6 +30,12 @@ public class RecordViewHelper {
         return inflater.inflate(R.layout.record_item, recordContainer, false);
     }
     public void setupSpinners(View recordView) {
+
+        Spinner spinner0 = recordView.findViewById(R.id.spinner0);
+        ArrayAdapter<CharSequence> adapter0 = ArrayAdapter.createFromResource(context, R.array.workout_array, android.R.layout.simple_spinner_item);
+        adapter0.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner0.setAdapter(adapter0);
+
         Spinner spinner1 = recordView.findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(context, R.array.machine_array, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -166,14 +172,14 @@ public class RecordViewHelper {
 
     public void copyValues(View parent, View toView) {
         // EditText 값 복사
-        ((android.widget.EditText)toView.findViewById(R.id.etExerciseName))
-                .setText(((android.widget.EditText)parent.findViewById(R.id.etExerciseName)).getText().toString());
         ((android.widget.EditText)toView.findViewById(R.id.etWeight))
                 .setText(((android.widget.EditText)parent.findViewById(R.id.etWeight)).getText().toString());
         ((android.widget.EditText)toView.findViewById(R.id.etCount))
                 .setText(((android.widget.EditText)parent.findViewById(R.id.etCount)).getText().toString());
 
         // Spinner 선택값 복사
+        ((Spinner)toView.findViewById(R.id.spinner0))
+                .setSelection(((Spinner)parent.findViewById(R.id.spinner0)).getSelectedItemPosition());
         ((Spinner)toView.findViewById(R.id.spinner1))
                 .setSelection(((Spinner)parent.findViewById(R.id.spinner1)).getSelectedItemPosition());
         ((Spinner)toView.findViewById(R.id.spinner2))
