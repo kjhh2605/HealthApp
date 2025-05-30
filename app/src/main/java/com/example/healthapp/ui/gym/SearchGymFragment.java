@@ -55,6 +55,18 @@ public class SearchGymFragment extends Fragment {
         // 초기 검색창 힌트 설정
         editSearch = view.findViewById(R.id.edit_search);
         setRandomHint();
+        editSearch.addTextChangedListener(new android.text.TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterGyms(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(android.text.Editable s) {}
+        });
 
         myDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -76,7 +88,15 @@ public class SearchGymFragment extends Fragment {
 
 
         // 2. Adapter 생성 및 연결
-        adapter = new GymAdapter(gymList,this.getContext());
+        adapter = new GymAdapter(gymList, getContext(), new GymAdapter.OnGymClickListener() {
+            @Override
+            public void onGymClick(Gym gym) {
+                // 예시: 바텀시트 다이얼로그 띄우기
+                GymInfoBottomSheet
+                        .newInstance(gym.getName(),gym.getRegion()) // getEquipment()는 예시
+                        .show(getParentFragmentManager(), "GymInfoBottomSheet");
+            }
+        });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -113,4 +133,22 @@ public class SearchGymFragment extends Fragment {
         }
     }
 
+    private void filterGyms(String query) {
+        List<Gym> filteredList = new ArrayList<>();
+        query = query.toLowerCase();
+
+        for (Gym gym : gymList) {
+            if (gym == null) continue;
+            if ((gym.getName() != null && gym.getName().toLowerCase().contains(query)) ||
+                    (gym.getRegion() != null && gym.getRegion().contains(query))
+                    //|| (gym.trainer != null && gym.trainer.toLowerCase().contains(query)) ||
+                    //(gym.equipment != null && gym.equipment.toLowerCase().contains(query))
+            ) {
+                filteredList.add(gym);
+            }
+        }
+
+        ((GymAdapter) adapter).updateList(filteredList);
+        resultCount.setText("검색 결과 " + filteredList.size() + "개");
+    }
 }

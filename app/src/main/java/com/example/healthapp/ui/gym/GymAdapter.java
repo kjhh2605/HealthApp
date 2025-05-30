@@ -18,10 +18,18 @@ import java.util.List;
 public class GymAdapter extends RecyclerView.Adapter<GymAdapter.GymViewHolder> {
     private List<Gym> gymList;
     private Context context;
-    public GymAdapter(List<Gym> gymList,Context context) {
+    private OnGymClickListener listener;
+
+    public GymAdapter(List<Gym> gymList, Context context, OnGymClickListener listener) {
         this.gymList = gymList;
         this.context = context;
+        this.listener = listener;
     }
+
+    public interface OnGymClickListener {
+        void onGymClick(Gym gym);
+    }
+
 
     @NotNull
     @Override
@@ -45,6 +53,11 @@ public class GymAdapter extends RecyclerView.Adapter<GymAdapter.GymViewHolder> {
 //        List<Machine> machines = gym.getMachineList();
 //        holder.tvMachine1.setText(machines.size() > 0 ? "#" + machines.get(0).getName() : "");
 //        holder.tvMachine2.setText(machines.size() > 1 ? "#" + machines.get(1).getName() : "");
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null && position != RecyclerView.NO_POSITION) {
+                listener.onGymClick(gym);
+            }
+        });
     }
 
     @Override
@@ -63,5 +76,10 @@ public class GymAdapter extends RecyclerView.Adapter<GymAdapter.GymViewHolder> {
             tvMachine1 = itemView.findViewById(R.id.tv_machine1);
             tvMachine2 = itemView.findViewById(R.id.tv_machine2);
         }
+    }
+
+    public void updateList(List<Gym> newList) {
+        this.gymList = newList;
+        notifyDataSetChanged();
     }
 }
