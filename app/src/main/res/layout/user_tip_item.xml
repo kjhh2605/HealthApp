@@ -27,9 +27,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:text="운동명"
-                android:textStyle="bold"
+                android:textColor="#222222"
                 android:textSize="16sp"
-                android:textColor="#222222" />
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/tv_workout_etc"
                 android:layout_width="0dp"
@@ -78,7 +79,7 @@
 
             <ImageButton
                 android:id="@+id/btn_like"
-                android:layout_width="32dp"
+                android:layout_width="37dp"
                 android:layout_height="32dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/thumb_up" />

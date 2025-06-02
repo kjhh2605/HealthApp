@@ -92,7 +92,7 @@ public class WorkoutFragment extends Fragment {
     private void addWorkoutRecordView() {
         View recordView = viewHelper.createRecordView();
         viewHelper.setupSpinners(recordView);
-        viewHelper.setupSwipeToDelete(recordView);
+        viewHelper.setupTouchAndSwipe(recordView,requireContext());
         viewHelper.animateRecordView(recordView);
         viewHelper.setupAddSetButton(recordView);
         recordContainer.addView(recordView);

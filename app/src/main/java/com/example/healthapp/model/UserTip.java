@@ -1,9 +1,50 @@
 package com.example.healthapp.model;
 
 public class UserTip {
-    private User user;
-    private Machine machine;
+    private String nickname;
+    private String machine;
     private String context;
     private int likes;
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getMachine() {
+        return machine;
+    }
+
+    public void setMachine(String machine) {
+        this.machine = machine;
+    }
+
+    public String getContext() {
+        return context;
+    }
+
+    public void setContext(String context) {
+        this.context = context;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(int dislikes) {
+        this.dislikes = dislikes;
+    }
+
     private int dislikes;
 }

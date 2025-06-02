@@ -13,7 +13,7 @@
         android:theme="@style/Theme.HealthApp"
         tools:targetApi="31">
         <activity
-            android:name=".ui.Comunity.CommunityActivity"
+            android:name=".ui.community.CommunityActivity"
             android:exported="false" />
         <activity
             android:name=".ui.HomeActivity"
