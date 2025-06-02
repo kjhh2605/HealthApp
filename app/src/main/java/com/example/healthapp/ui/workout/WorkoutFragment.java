@@ -78,6 +78,7 @@ public class WorkoutFragment extends Fragment {
                         .setPositiveButton("확인", (dialog, which) -> {
                             btnSaveRecords.setEnabled(false); // 버튼 비활성화
                             btnSaveRecords.setBackgroundColor(Color.GRAY);
+                            btnSaveRecords.setText("오늘의 운동 완료!");
                             saveAllWorkoutRecords();
                             removeAllWorkoutRecordView();
                         })
