@@ -30,7 +30,7 @@
 
     <!-- 오른쪽 하단 플로팅 액션 버튼 -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_write"
+        android:id="@+id/write_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="글쓰기"

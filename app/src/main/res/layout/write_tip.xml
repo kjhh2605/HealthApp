@@ -7,44 +7,38 @@
     app:cardCornerRadius="16dp"
     app:cardElevation="8dp"
     android:layout_gravity="center"
-    android:padding="20dp">
+    android:padding="0dp"
+    app:cardBackgroundColor="@android:color/darker_gray">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <!-- 제목 -->
         <TextView
             android:id="@+id/tv_dialog_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
-            android:text="나만의 팁을 작성해주세요!"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/square_bg"
             android:gravity="center"
-            android:textAlignment="center"
             android:paddingTop="8dp"
-            android:paddingBottom="8dp"/>
+            android:paddingBottom="8dp"
+            android:text="나만의 팁을 작성해주세요!"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <!-- 의견 입력란 (외곽선 효과) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@android:color/darker_gray"
             android:orientation="horizontal">
 
-            <!-- 왼쪽 외곽선 역할 -->
-            <View
-                android:layout_width="10dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/darker_gray"/>
-
             <!-- 입력란 -->
-
-            <!-- 오른쪽 외곽선 역할 -->
             <EditText
                 android:id="@+id/et_tip_content"
                 android:layout_width="0dp"
@@ -59,19 +53,12 @@
                 android:scrollbars="vertical"
                 android:textSize="16sp" />
 
-            <View
-                android:layout_width="10dp"
-                android:layout_height="match_parent"
-                android:background="@android:color/darker_gray" />
-
         </LinearLayout>
-
 
         <!-- 버튼 영역 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/darker_gray"
             android:gravity="end"
             android:orientation="horizontal">
 

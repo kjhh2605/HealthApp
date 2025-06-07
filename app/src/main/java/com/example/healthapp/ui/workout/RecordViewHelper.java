@@ -92,7 +92,6 @@ public class RecordViewHelper {
             }
         });
     }
-
     public void animateRecordView(View recordView) {
         recordView.setTranslationY(-200f);
         recordView.setAlpha(0f);
@@ -102,14 +101,13 @@ public class RecordViewHelper {
                 .setDuration(400)
                 .start();
     }
-
     public void setupTouchAndSwipe(final View recordView, final Context context) {
         recordView.setOnTouchListener(new View.OnTouchListener() {
             float downX = 0;
             float downY = 0;
             boolean swiped = false;
             boolean moved = false;
-            final float SWIPE_THRESHOLD = 120; // 스와이프로 간주할 거리(dp)
+            final float SWIPE_THRESHOLD = 120;
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -123,18 +121,19 @@ public class RecordViewHelper {
                     case MotionEvent.ACTION_MOVE:
                         float moveX = event.getX();
                         float deltaX = moveX - downX;
-                        if (Math.abs(deltaX) > 10) moved = true; // 10px 이상 움직이면 moved=true
+                        if (Math.abs(deltaX) > 10) moved = true;
 
                         if (deltaX > SWIPE_THRESHOLD && !swiped) {
-                            // 오른쪽으로 스와이프: 삭제
                             swiped = true;
                             v.animate().translationX(v.getWidth()).alpha(0f).setDuration(200)
                                     .withEndAction(() -> {
                                         ((ViewGroup) v.getParent()).removeView(v);
-                                        // partCountUpdateListener 등 콜백 호출
+                                        if (partCountUpdateListener != null) {
+                                            partCountUpdateListener.updatePartCount();
+                                        }
                                     }).start();
                         } else {
-                            v.setTranslationX(deltaX); // 스와이프 중 이동 효과
+                            v.setTranslationX(deltaX);
                         }
                         return true;
                     case MotionEvent.ACTION_UP:
@@ -142,7 +141,12 @@ public class RecordViewHelper {
                             v.animate().translationX(0).setDuration(150).start();
                             if (!moved) {
                                 // 클릭(터치)만 감지 → 게시판 이동
+                                Spinner spinner = recordView.findViewById(R.id.spinner0);
+                                String machine = spinner.getSelectedItem() != null
+                                        ? spinner.getSelectedItem().toString()
+                                        : "";
                                 Intent intent = new Intent(context, CommunityActivity.class);
+                                intent.putExtra("machine_name", machine);
                                 context.startActivity(intent);
                             }
                         }
@@ -155,7 +159,6 @@ public class RecordViewHelper {
             }
         });
     }
-
 
     public void setupAddSetButton(final View recordView) {
         View btnAddSet = recordView.findViewById(R.id.btnAddSet);
@@ -177,6 +180,7 @@ public class RecordViewHelper {
                     int index = recordContainer.indexOfChild(recordView);
                     recordContainer.addView(newRecordView, index + 1);
 
+                    // 부위 별 운동 세트 수 갱신
                     if (partCountUpdateListener != null) {
                         partCountUpdateListener.updatePartCount();
                     }
@@ -184,7 +188,6 @@ public class RecordViewHelper {
             });
         }
     }
-
     public void copyValues(View parent, View toView) {
         // EditText 값 복사
         ((android.widget.EditText)toView.findViewById(R.id.etWeight))

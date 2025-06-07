@@ -1,4 +1,4 @@
 package com.example.healthapp.ui.community;
 
-public class PostViewHelper {
+public class TipViewHelper {
 }

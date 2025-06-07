@@ -26,6 +26,7 @@ public class EmailLoginActivity extends AppCompatActivity {
     private DatabaseReference mDatabase; // 실시간DB
     private EditText etEmail,etPw;
     private Button btnLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

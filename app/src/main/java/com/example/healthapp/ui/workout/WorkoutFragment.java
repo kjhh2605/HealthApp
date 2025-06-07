@@ -187,7 +187,6 @@ public class WorkoutFragment extends Fragment {
                     Toast.makeText(getContext(), "저장 실패: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
-
     private void removeAllWorkoutRecordView(){
         recordContainer.removeAllViews();
         updatePartCounts();

@@ -6,6 +6,18 @@ public class UserTip {
     private String context;
     private int likes;
 
+    private int dislikes;
+
+    public UserTip() {}
+
+    public UserTip(String nickname, String machine, String context) {
+        this.nickname = nickname;
+        this.machine = machine;
+        this.context = context;
+        this.likes = 0;
+        this.dislikes = 0;
+    }
+
     public String getNickname() {
         return nickname;
     }
@@ -46,5 +58,4 @@ public class UserTip {
         this.dislikes = dislikes;
     }
 
-    private int dislikes;
 }
