@@ -23,6 +23,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         tabHome = findViewById(R.id.tab_home);
+        tabHome.setBackgroundResource(R.drawable.tab_selected);
         tabRecord = findViewById(R.id.tab_record);
         tabSearch = findViewById(R.id.tab_search);
 
@@ -32,8 +33,8 @@ public class HomeActivity extends AppCompatActivity {
 
         // 처음에 모든 프래그먼트 add, workoutFragment만 show
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, homeFragment, "HOME").hide(homeFragment)
-                .add(R.id.fragment_container, workoutFragment, "WORKOUT")
+                .add(R.id.fragment_container, homeFragment, "HOME")
+                .add(R.id.fragment_container, workoutFragment, "WORKOUT").hide(workoutFragment)
                 .add(R.id.fragment_container, searchGymFragment, "SEARCH").hide(searchGymFragment)
                 .commit();
 
@@ -66,5 +67,22 @@ public class HomeActivity extends AppCompatActivity {
                 .show(fragment)
                 .commit();
         activeFragment = fragment;
+        updateTabBackgrounds(fragment);
+    }
+
+    private void updateTabBackgrounds(Fragment selectedFragment) {
+        if (selectedFragment == homeFragment) {
+            tabHome.setBackgroundResource(R.drawable.tab_selected);
+            tabRecord.setBackgroundResource(R.drawable.tab_unselected);
+            tabSearch.setBackgroundResource(R.drawable.tab_unselected);
+        } else if (selectedFragment == workoutFragment) {
+            tabHome.setBackgroundResource(R.drawable.tab_unselected);
+            tabRecord.setBackgroundResource(R.drawable.tab_selected);
+            tabSearch.setBackgroundResource(R.drawable.tab_unselected);
+        } else if (selectedFragment == searchGymFragment) {
+            tabHome.setBackgroundResource(R.drawable.tab_unselected);
+            tabRecord.setBackgroundResource(R.drawable.tab_unselected);
+            tabSearch.setBackgroundResource(R.drawable.tab_selected);
+        }
     }
 }

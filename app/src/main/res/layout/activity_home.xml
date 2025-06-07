@@ -18,32 +18,54 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:orientation="horizontal"
+        android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
             android:id="@+id/tab_home"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="홈" />
+            android:text="홈"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/tab_unselected"
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/tab_record"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="운동기록" />
+            android:text="운동기록"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/tab_unselected"
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/tab_search"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="헬스장 검색" />
+            android:text="헬스장 검색"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/tab_unselected"
+            android:textSize="16sp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
