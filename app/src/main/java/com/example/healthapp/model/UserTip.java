@@ -1,5 +1,7 @@
 package com.example.healthapp.model;
 
+import java.util.Objects;
+
 public class UserTip {
     private String nickname;
     private String machine;
@@ -57,5 +59,19 @@ public class UserTip {
     public void setDislikes(int dislikes) {
         this.dislikes = dislikes;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserTip userTip = (UserTip) o;
+        return Objects.equals(nickname, userTip.nickname) && Objects.equals(context, userTip.context);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nickname, context);
+    }
+
 
 }

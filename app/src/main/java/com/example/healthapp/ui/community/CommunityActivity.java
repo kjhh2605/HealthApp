@@ -9,17 +9,32 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthapp.R;
+import com.example.healthapp.model.UserTip;
+import com.example.healthapp.repository.MyFirebaseDB;
 import com.example.healthapp.repository.UserRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CommunityActivity extends AppCompatActivity {
     private FloatingActionButton writeBtn;
     private String machineName;
-
+    private RecyclerView recyclerView;
+    private CommunityAdapter adapter;
+    private ArrayList<UserTip> tipList;
+    private HashMap<UserTip,String> keyMap;
+    private DatabaseReference myDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +45,60 @@ public class CommunityActivity extends AppCompatActivity {
         writeBtn.setOnClickListener(v -> showPostTipDialogWithNickname());
 
         machineName = getIntent().getStringExtra("machine_name");
+
+        myDB = MyFirebaseDB.getDB().child("Community").child(machineName);
+        recyclerView = findViewById(R.id.recycler_tip);
+        tipList = new ArrayList<>();
+        keyMap = new HashMap<>();
+
+        myDB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                tipList.clear();
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    UserTip tip = data.getValue(UserTip.class);
+                    if (tip != null) {
+                        tipList.add(tip);
+                        keyMap.put(tip, data.getKey());
+                    }
+                }
+                // 좋아요 순으로 정렬 -> 같으면 싫어요 적은 순
+                tipList.sort((a, b) -> {
+                    int cmp = Integer.compare(b.getLikes(), a.getLikes());
+                    if (cmp != 0) return cmp;
+                    return Integer.compare(a.getDislikes(), b.getDislikes());
+                });
+
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(CommunityActivity.this, "작성된 게시글이 없습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        adapter = new CommunityAdapter(tipList, this, new CommunityAdapter.OnTipClickListener() {
+            // 좋아요
+            @Override
+            public void onLikeClick(UserTip tip) {
+                String tipKey = keyMap.get(tip);
+                if (tipKey != null) {
+                    myDB.child(tipKey).child("likes").setValue(tip.getLikes() + 1);
+                }
+            }
+            // 싫어요
+            @Override
+            public void onDislikeClick(UserTip tip) {
+                String tipKey = keyMap.get(tip);
+                if (tipKey != null) {
+                    myDB.child(tipKey).child("dislikes").setValue(tip.getDislikes() + 1);
+                }
+            }
+        });
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     // 닉네임을 비동기로 불러와서 다이얼로그에 전달

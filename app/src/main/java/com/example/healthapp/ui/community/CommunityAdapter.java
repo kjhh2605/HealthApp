@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,7 +27,8 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Comm
     }
 
     public interface OnTipClickListener {
-        void onTipClick(UserTip tip);
+        void onLikeClick(UserTip tip);
+        void onDislikeClick(UserTip tip);
     }
 
     @NonNull
@@ -46,6 +48,9 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Comm
         holder.tvContent.setText(tip.getContext());
         holder.tvLikeCount.setText(String.valueOf(tip.getLikes()));
         holder.tvDislikeCount.setText(String.valueOf(tip.getDislikes()));
+
+        holder.btnLike.setOnClickListener(v -> listener.onLikeClick(tip));
+        holder.btnDislike.setOnClickListener(v -> listener.onDislikeClick(tip));
     }
 
     @Override
@@ -55,6 +60,7 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Comm
 
     public static class CommunityViewHolder extends RecyclerView.ViewHolder {
         TextView tvExercise, tvWriter, tvContent,tvLikeCount, tvDislikeCount;
+        ImageButton btnLike, btnDislike;
 
         public CommunityViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +69,8 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Comm
             tvContent = itemView.findViewById(R.id.tv_content);
             tvLikeCount = itemView.findViewById(R.id.tv_like_count);
             tvDislikeCount = itemView.findViewById(R.id.tv_dislike_count);
+            btnLike = itemView.findViewById(R.id.btn_like);
+            btnDislike = itemView.findViewById(R.id.btn_dislike);
         }
     }
 }
