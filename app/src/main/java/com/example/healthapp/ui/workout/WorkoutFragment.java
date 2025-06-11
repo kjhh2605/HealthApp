@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import com.example.healthapp.R;
 import com.example.healthapp.model.WorkoutRecord;
 import com.example.healthapp.repository.MyFirebaseDB;
-import com.example.healthapp.repository.UserRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -30,13 +29,12 @@ import java.util.Locale;
 
 
 public class WorkoutFragment extends Fragment {
-    private UserRepository userRepository;
     private TextView tvCountBack, tvCountChest, tvCountLeg, tvCountArm, tvCountShoulder;
     private LinearLayout recordContainer;
     private FloatingActionButton btnAddRecord;
     private RecordViewHelper viewHelper;
-
     private Button btnSaveRecords;
+
     public WorkoutFragment() {
         super(R.layout.fragment_workout); // Fragment에 레이아웃 연결
     }
@@ -97,7 +95,6 @@ public class WorkoutFragment extends Fragment {
         viewHelper.setupAddSetButton(recordView);
         recordContainer.addView(recordView);
     }
-
     private void updatePartCounts() {
         int countBack = 0, countChest = 0, countLeg = 0, countArm = 0 , countShoulder=0;
         for (int i = 0; i < recordContainer.getChildCount(); i++) {
@@ -124,7 +121,6 @@ public class WorkoutFragment extends Fragment {
         tvCountArm.setText("팔: " + countArm);
         tvCountArm.setText("어깨: " + countShoulder);
     }
-
     private void saveAllWorkoutRecords() {
         List<WorkoutRecord> recordList = new ArrayList<>();
 
@@ -168,7 +164,6 @@ public class WorkoutFragment extends Fragment {
 
         saveRecordsToFirebase(recordList);
     }
-
     private void saveRecordsToFirebase(List<WorkoutRecord> recordList) {
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         String dateKey = new SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(new Date());

@@ -34,14 +34,13 @@ public class HomeActivity extends AppCompatActivity {
         workoutFragment = new WorkoutFragment();
         searchGymFragment = new SearchGymFragment();
 
-        // 처음에 모든 프래그먼트 add, workoutFragment만 show
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, homeFragment, "HOME")
                 .add(R.id.fragment_container, workoutFragment, "WORKOUT").hide(workoutFragment)
                 .add(R.id.fragment_container, searchGymFragment, "SEARCH").hide(searchGymFragment)
                 .commit();
 
-        activeFragment = workoutFragment;
+        activeFragment = homeFragment;
 
         tabHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +96,6 @@ public class HomeActivity extends AppCompatActivity {
                 .setPositiveButton("종료", (dialog, which) -> {finishAffinity();})
                 .setNegativeButton("취소", null)
                 .show();
-        //super.onBackPressed();
     }
 
 

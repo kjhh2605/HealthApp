@@ -4,18 +4,24 @@ import java.util.Objects;
 
 public class UserTip {
     private String nickname;
+    private String workout;
     private String machine;
     private String context;
+    private String etc;
+    private String weightInfo;
     private int likes;
 
     private int dislikes;
 
-    public UserTip() {}
+    public UserTip() {
+    }
 
-    public UserTip(String nickname, String machine, String context) {
+    public UserTip(String nickname, String workout, String machine, String context, String etc) {
         this.nickname = nickname;
+        this.workout = workout;
         this.machine = machine;
         this.context = context;
+        this.etc = etc;
         this.likes = 0;
         this.dislikes = 0;
     }
@@ -42,6 +48,22 @@ public class UserTip {
 
     public void setContext(String context) {
         this.context = context;
+    }
+
+    public String getEtc() {
+        return etc;
+    }
+
+    public void setEtc(String etc) {
+        this.etc = etc;
+    }
+
+    public String getWorkout() {
+        return workout;
+    }
+
+    public void setWorkout(String workout) {
+        this.workout = workout;
     }
 
     public int getLikes() {

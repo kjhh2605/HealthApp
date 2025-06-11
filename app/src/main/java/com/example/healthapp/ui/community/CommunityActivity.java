@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthapp.R;
+import com.example.healthapp.adapter.CommunityAdapter;
 import com.example.healthapp.model.UserTip;
 import com.example.healthapp.repository.MyFirebaseDB;
 import com.example.healthapp.repository.UserRepository;
@@ -29,7 +30,7 @@ import java.util.HashMap;
 
 public class CommunityActivity extends AppCompatActivity {
     private FloatingActionButton writeBtn;
-    private String machineName;
+    private String selectedWorkout,selectedMachine,etc;
     private RecyclerView recyclerView;
     private CommunityAdapter adapter;
     private ArrayList<UserTip> tipList;
@@ -44,9 +45,11 @@ public class CommunityActivity extends AppCompatActivity {
         writeBtn = findViewById(R.id.write_btn);
         writeBtn.setOnClickListener(v -> showPostTipDialogWithNickname());
 
-        machineName = getIntent().getStringExtra("machine_name");
+        selectedWorkout = getIntent().getStringExtra("workout");
+        selectedMachine = getIntent().getStringExtra("machine");
+        etc = getIntent().getStringExtra("etc");
 
-        myDB = MyFirebaseDB.getDB().child("Community").child(machineName);
+        myDB = MyFirebaseDB.getDB().child("Community").child(selectedWorkout);
         recyclerView = findViewById(R.id.recycler_tip);
         tipList = new ArrayList<>();
         keyMap = new HashMap<>();
@@ -126,8 +129,8 @@ public class CommunityActivity extends AppCompatActivity {
         Button btnSubmit = dialogView.findViewById(R.id.btn_submit);
         EditText etTipContent = dialogView.findViewById(R.id.et_tip_content);
 
-        // TipDialogListener에 nickname, machineName 전달
-        TipDialogListener listener = new TipDialogListener(dialog, etTipContent, this, nickname, machineName);
+        // TipDialogListener에 nickname, 선택 운동 정보 전달
+        TipDialogListener listener = new TipDialogListener(dialog, etTipContent, this, nickname, selectedWorkout,selectedMachine,etc);
 
         btnCancel.setOnClickListener(v -> dialog.dismiss());
         btnSubmit.setOnClickListener(listener);

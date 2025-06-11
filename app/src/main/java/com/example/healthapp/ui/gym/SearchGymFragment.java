@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.healthapp.R;
+import com.example.healthapp.adapter.GymAdapter;
 import com.example.healthapp.model.Gym;
 import com.example.healthapp.repository.MyFirebaseDB;
 import com.google.firebase.database.DataSnapshot;

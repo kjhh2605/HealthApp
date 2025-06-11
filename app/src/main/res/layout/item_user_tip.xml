@@ -31,14 +31,6 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tv_workout_etc"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="선택없음"
-                android:textSize="16sp"
-                android:textColor="#222222" />
 
             <TextView
                 android:id="@+id/tv_writer"
@@ -48,13 +40,32 @@
                 android:text="닉네임"
                 android:textSize="14sp"
                 android:textColor="#666666" />
+
+        </LinearLayout>
+
+        <!-- 운동명 밑에 추가: tv_machine, tv_etc -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
             <TextView
-                android:id="@+id/tv_info"
+                android:id="@+id/tv_machine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  헬린이"
-                android:textSize="14sp"
-                android:textColor="#666666" />
+                android:text="머신"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tv_etc_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="etc"
+                android:textSize="12sp"
+                android:textColor="#666666"/>
         </LinearLayout>
 
         <!-- 본문 -->

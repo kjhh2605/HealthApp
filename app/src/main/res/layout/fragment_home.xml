@@ -92,14 +92,14 @@
         app:layout_constraintTop_toBottomOf="@id/playlist_divider" />
 
     <TextView
-        android:id="@+id/title_myinfo"
+        android:id="@+id/title_hot"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
         android:gravity="start"
-        android:text="👤 내 정보"
+        android:text="🔥 Hot"
         android:textColor="#222222"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -109,7 +109,7 @@
 
     <!-- 구분선 -->
     <View
-        android:id="@+id/myinfo_divider"
+        android:id="@+id/hot_divider"
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_marginStart="24dp"
@@ -118,48 +118,30 @@
         android:background="@color/cardview_dark_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_myinfo" />
+        app:layout_constraintTop_toBottomOf="@id/title_hot" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_hot"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myinfo_divider">
+        app:layout_constraintTop_toBottomOf="@id/hot_divider"
+        android:contentDescription="인기글 목록" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <!-- 닉네임 -->
-            <TextView
-                android:id="@+id/tv_nickname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="닉네임"
-                android:textColor="#222222"
-                android:textSize="18sp" />
-
-            <!-- 3대 운동 기록 -->
-            <TextView
-                android:id="@+id/tv_big3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="3대 운동: 300kg"
-                android:textColor="#555555"
-                android:textSize="16sp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:src="@drawable/chat_bot"
+        app:backgroundTint="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

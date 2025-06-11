@@ -1,4 +1,4 @@
-package com.example.healthapp.ui.home;
+package com.example.healthapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,11 +19,11 @@ import com.example.healthapp.model.YoutubeLink;
 import java.util.List;
 
 
-public class CardRecyclerAdapter extends RecyclerView.Adapter<CardRecyclerAdapter.CardViewHolder> {
+public class PlayListAdapter extends RecyclerView.Adapter<PlayListAdapter.CardViewHolder> {
     private final List<YoutubeLink> cardList;
     private final Context context;
 
-    public CardRecyclerAdapter(List<YoutubeLink> cardList, Context context) {
+    public PlayListAdapter(List<YoutubeLink> cardList, Context context) {
         this.cardList = cardList;
         this.context = context;
     }

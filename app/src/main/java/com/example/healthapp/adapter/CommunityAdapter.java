@@ -1,4 +1,4 @@
-package com.example.healthapp.ui.community;
+package com.example.healthapp.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -34,7 +34,7 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Comm
     @NonNull
     @Override
     public CommunityViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_tip_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_tip, parent, false);
         return new CommunityViewHolder(view);
     }
 
@@ -43,9 +43,11 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Comm
         UserTip tip = tipList.get(position);
 
         // 뷰 바인딩
-        holder.tvExercise.setText(tip.getMachine() != null ? tip.getMachine(): "운동명 없음");
-        holder.tvWriter.setText(tip.getNickname() != null ? tip.getNickname(): "익명");
+        holder.tvWorkout.setText(tip.getWorkout());
+        holder.tvWriter.setText(tip.getNickname());
         holder.tvContent.setText(tip.getContext());
+        holder.tvMachine.setText(tip.getMachine());
+        holder.tvEtc.setText(tip.getEtc());
         holder.tvLikeCount.setText(String.valueOf(tip.getLikes()));
         holder.tvDislikeCount.setText(String.valueOf(tip.getDislikes()));
 
@@ -59,12 +61,14 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Comm
     }
 
     public static class CommunityViewHolder extends RecyclerView.ViewHolder {
-        TextView tvExercise, tvWriter, tvContent,tvLikeCount, tvDislikeCount;
+        TextView tvWorkout, tvWriter, tvContent,tvLikeCount, tvDislikeCount, tvMachine, tvEtc;
         ImageButton btnLike, btnDislike;
 
         public CommunityViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvExercise = itemView.findViewById(R.id.tv_workout);
+            tvWorkout = itemView.findViewById(R.id.tv_workout);
+            tvMachine = itemView.findViewById(R.id.tv_machine);
+            tvEtc = itemView.findViewById(R.id.tv_etc_add);
             tvWriter = itemView.findViewById(R.id.tv_writer);
             tvContent = itemView.findViewById(R.id.tv_content);
             tvLikeCount = itemView.findViewById(R.id.tv_like_count);

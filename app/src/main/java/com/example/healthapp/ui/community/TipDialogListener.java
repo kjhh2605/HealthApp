@@ -18,18 +18,16 @@ public class TipDialogListener implements View.OnClickListener {
     private final EditText etTipContent;
     private final Context context;
     private final String nickname;
-    private final String machine;
+    private final String workout, machine, etc;
 
-    public interface OnTipSubmitListener {
-        void onTipSubmit(String tipContent);
-    }
-
-    public TipDialogListener(AlertDialog dialog, EditText etTipContent, Context context, String nickname,String machine) {
+    public TipDialogListener(AlertDialog dialog, EditText etTipContent, Context context, String nickname,String workout,String machine,String etc) {
         this.dialog = dialog;
         this.etTipContent = etTipContent;
         this.context = context;
         this.nickname = nickname;
+        this.workout = workout;
         this.machine = machine;
+        this.etc = etc;
     }
 
     @Override
@@ -43,8 +41,8 @@ public class TipDialogListener implements View.OnClickListener {
                 Toast.makeText(context, "내용을 입력하세요!", Toast.LENGTH_SHORT).show();
                 return;
             }else{
-                UserTip userTip = new UserTip(nickname, machine, tip);
-                DatabaseReference ref = MyFirebaseDB.getDB().child("Community").child(machine);
+                UserTip userTip = new UserTip(nickname, workout, machine, tip, etc);
+                DatabaseReference ref = MyFirebaseDB.getDB().child("Community").child(workout);
                 ref.push().setValue(userTip)
                         .addOnSuccessListener(aVoid -> Log.d("Firebase", "저장 성공"))
                         .addOnFailureListener(e -> Log.e("Firebase", "저장 실패: " + e.getMessage()));

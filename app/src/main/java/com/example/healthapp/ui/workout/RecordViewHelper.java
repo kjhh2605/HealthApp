@@ -141,12 +141,16 @@ public class RecordViewHelper {
                             v.animate().translationX(0).setDuration(150).start();
                             if (!moved) {
                                 // 클릭(터치)만 감지 → 게시판 이동
-                                Spinner spinner = recordView.findViewById(R.id.spinner0);
-                                String machine = spinner.getSelectedItem() != null
-                                        ? spinner.getSelectedItem().toString()
-                                        : "";
+                                Spinner spinner0 = recordView.findViewById(R.id.spinner0); // 운동명
+                                Spinner spinner1 = recordView.findViewById(R.id.spinner1); // 회사
+                                Spinner spinner3 = recordView.findViewById(R.id.spinner3); // 기타
+                                String workout = spinner0.getSelectedItem() != null ? spinner0.getSelectedItem().toString() : "";
+                                String machine = spinner1.getSelectedItem() != null ? spinner1.getSelectedItem().toString() : "";
+                                String etc = spinner3.getSelectedItem() != null ? spinner3.getSelectedItem().toString() : "";
                                 Intent intent = new Intent(context, CommunityActivity.class);
-                                intent.putExtra("machine_name", machine);
+                                intent.putExtra("workout", workout);
+                                intent.putExtra("machine", machine);
+                                intent.putExtra("etc",etc);
                                 context.startActivity(intent);
                             }
                         }
