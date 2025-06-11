@@ -1,5 +1,4 @@
 package com.example.healthapp.model;
-
 public class Gym {
     private String name;
     private String region;

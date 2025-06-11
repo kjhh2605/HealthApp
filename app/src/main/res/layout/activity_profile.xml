@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="32dp">
+
+    <!-- 프로필 이미지 -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/profile_icon"
+        android:background="@android:color/white"
+        android:contentDescription="프로필 이미지" />
+
+    <!-- 닉네임 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="닉네임"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"/>
+    <EditText
+        android:id="@+id/et_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="닉네임"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="16dp"
+        android:enabled="false"/>
+
+    <!-- 3대 중량 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3대 중량 (kg)"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"/>
+
+    <!-- 스쿼트 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="스쿼트"
+            android:textSize="15sp"/>
+
+        <EditText
+            android:id="@+id/et_squat"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:hint="무게"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
+            android:paddingEnd="8dp"
+            android:enabled="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+    <!-- 벤치프레스 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="벤치프레스"
+            android:textSize="15sp"/>
+
+        <EditText
+            android:id="@+id/et_bench"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:hint="무게"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
+            android:paddingEnd="8dp"
+            android:enabled="false"/> <!-- 초기에는 비활성화 -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+    <!-- 데드리프트 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="24dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="데드리프트"
+            android:textSize="15sp"/>
+
+        <EditText
+            android:id="@+id/et_deadlift"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:hint="무게"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
+            android:paddingEnd="8dp"
+            android:enabled="false"/> <!-- 초기에는 비활성화 -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+    <!-- 저장/수정 버튼 -->
+    <Button
+        android:id="@+id/btn_modify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="수정"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- 로그아웃 버튼 -->
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="로그아웃" />
+</LinearLayout>

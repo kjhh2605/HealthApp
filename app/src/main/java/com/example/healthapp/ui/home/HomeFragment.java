@@ -1,5 +1,6 @@
 package com.example.healthapp.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,19 +10,29 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.healthapp.ui.home.profile.ProfileActivity;
 import com.example.healthapp.R;
 import com.example.healthapp.model.YoutubeLink;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class HomeFragment extends Fragment {
+    private CircleImageView profile;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // ViewPager2와 어댑터 연결 예시
+        profile = view.findViewById(R.id.profile);
+        profile.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), ProfileActivity.class);
+            startActivity(intent);
+        });
+
         RecyclerView cardRecycler = view.findViewById(R.id.card_recycler);
 
         List<YoutubeLink> cardList = new ArrayList<>();

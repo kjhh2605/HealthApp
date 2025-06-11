@@ -5,7 +5,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.healthapp.ui.HomeActivity;
 import com.example.healthapp.ui.login.StartActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -13,15 +15,17 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        // 예시: 로그인 상태 체크 (여기서는 무조건 로그인 화면으로 이동)
-        boolean isLoggedIn = false; // 실제로는 SharedPreferences 등으로 체크
-
-        if (!isLoggedIn) {
-            // 로그인 화면으로 이동
+        // 로그인 여부 확인
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            // 로그인 상태: HomeActivity로 이동
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+        } else {
+            // 로그아웃 상태: StartActivity로 이동
             Intent intent = new Intent(this, StartActivity.class);
             startActivity(intent);
-            finish(); // MainActivity 종료 (뒤로가기 시 로그인화면 안 나오게)
-            return;
         }
+
     }
 }

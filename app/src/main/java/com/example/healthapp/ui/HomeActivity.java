@@ -1,5 +1,6 @@
 package com.example.healthapp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -10,7 +11,9 @@ import androidx.fragment.app.Fragment;
 import com.example.healthapp.R;
 import com.example.healthapp.ui.gym.SearchGymFragment;
 import com.example.healthapp.ui.home.HomeFragment;
+import com.example.healthapp.ui.login.StartActivity;
 import com.example.healthapp.ui.workout.WorkoutFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
     private TextView tabHome, tabRecord, tabSearch;
@@ -85,4 +88,17 @@ public class HomeActivity extends AppCompatActivity {
             tabSearch.setBackgroundResource(R.drawable.tab_selected);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("앱 종료")
+                .setMessage("앱을 종료하시겠습니까?")
+                .setPositiveButton("종료", (dialog, which) -> {finishAffinity();})
+                .setNegativeButton("취소", null)
+                .show();
+        //super.onBackPressed();
+    }
+
+
 }
