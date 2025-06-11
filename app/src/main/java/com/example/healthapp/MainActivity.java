@@ -14,7 +14,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
+//        // 더미데이터 생성
+//        GymTestDataGenerator.addTestGyms();
         // 로그인 여부 확인
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {

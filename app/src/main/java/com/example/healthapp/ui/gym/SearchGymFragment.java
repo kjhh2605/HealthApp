@@ -87,14 +87,12 @@ public class SearchGymFragment extends Fragment {
             }
         });
 
-
-        // 2. Adapter 생성 및 연결
         adapter = new GymAdapter(gymList, getContext(), new GymAdapter.OnGymClickListener() {
             @Override
             public void onGymClick(Gym gym) {
                 // 예시: 바텀시트 다이얼로그 띄우기
                 GymInfoBottomSheet
-                        .newInstance(gym.getName(),gym.getRegion()) // getEquipment()는 예시
+                        .newInstance(gym)
                         .show(getParentFragmentManager(), "GymInfoBottomSheet");
             }
         });
@@ -108,6 +106,15 @@ public class SearchGymFragment extends Fragment {
         super.onResume();
         setRandomHint();
     }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            setRandomHint();
+        }
+    }
+
     private void setRandomHint() {
         String[][] hints = {
                 {"찾는 기구가 있으신가요?", "ex)해머 스트렝스 로우로우"},
@@ -140,11 +147,36 @@ public class SearchGymFragment extends Fragment {
 
         for (Gym gym : gymList) {
             if (gym == null) continue;
-            if ((gym.getName() != null && gym.getName().toLowerCase().contains(query)) ||
-                    (gym.getRegion() != null && gym.getRegion().contains(query))
-                    //|| (gym.trainer != null && gym.trainer.toLowerCase().contains(query)) ||
-                    //(gym.equipment != null && gym.equipment.toLowerCase().contains(query))
-            ) {
+
+            // 이름 검색
+            boolean nameMatch = gym.getName() != null && gym.getName().toLowerCase().contains(query);
+            // 지역 검색
+            boolean regionMatch = gym.getRegion() != null && gym.getRegion().toLowerCase().contains(query);
+            // 머신(기구) 검색
+            boolean machineMatch = false;
+            if (gym.getMachineList() != null) {
+                for (String machine : gym.getMachineList()) {
+                    if (machine.toLowerCase().contains(query)) {
+                        machineMatch = true;
+                        break;
+                    }
+                }
+            }
+            // 트레이너 경력(자격증) 검색
+            boolean trainerCertMatch = false;
+            if (gym.getTrainerList() != null) {
+                for (ArrayList<String> certs : gym.getTrainerList().values()) {
+                    for (String cert : certs) {
+                        if (cert.toLowerCase().contains(query)) {
+                            trainerCertMatch = true;
+                            break;
+                        }
+                    }
+                    if (trainerCertMatch) break;
+                }
+            }
+
+            if (nameMatch || regionMatch || machineMatch || trainerCertMatch) {
                 filteredList.add(gym);
             }
         }
@@ -152,4 +184,5 @@ public class SearchGymFragment extends Fragment {
         ((GymAdapter) adapter).updateList(filteredList);
         resultCount.setText("검색 결과 " + filteredList.size() + "개");
     }
+
 }

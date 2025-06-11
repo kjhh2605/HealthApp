@@ -13,6 +13,7 @@ import com.example.healthapp.model.Gym;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GymAdapter extends RecyclerView.Adapter<GymAdapter.GymViewHolder> {
@@ -30,29 +31,26 @@ public class GymAdapter extends RecyclerView.Adapter<GymAdapter.GymViewHolder> {
         void onGymClick(Gym gym);
     }
 
-
     @NotNull
     @Override
     public GymViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // preview_gym 레이아웃 연결
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.preview_gym, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_gym, parent, false);
         GymViewHolder holder = new GymViewHolder(view);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(GymViewHolder holder, int position) {
-        //이미지 불러올 때 사용
-        //Glide.with(holder.itemView).load(gymList.get(position).getImageUrl()).into(holder.ivGym)
-
         Gym gym = gymList.get(position);
         holder.tvName.setText(gym.getName());
         holder.tvRegion.setText(gym.getRegion());
         holder.tvPrice.setText("월 " + gym.getPrice() + "원");
-//        // 대표 기구 표시
-//        List<Machine> machines = gym.getMachineList();
-//        holder.tvMachine1.setText(machines.size() > 0 ? "#" + machines.get(0).getName() : "");
-//        holder.tvMachine2.setText(machines.size() > 1 ? "#" + machines.get(1).getName() : "");
+
+        // 머신(기구) 정보 표시
+        ArrayList<String> machines = gym.getMachineList();
+        holder.tvMachine1.setText(machines != null && machines.size() > 0 ? "#" + machines.get(0) : "");
+        holder.tvMachine2.setText(machines != null && machines.size() > 1 ? "#" + machines.get(1) : "");
+
         holder.itemView.setOnClickListener(v -> {
             if (listener != null && position != RecyclerView.NO_POSITION) {
                 listener.onGymClick(gym);
@@ -63,6 +61,11 @@ public class GymAdapter extends RecyclerView.Adapter<GymAdapter.GymViewHolder> {
     @Override
     public int getItemCount() {
         return gymList != null ? gymList.size() : 0;
+    }
+
+    public void updateList(List<Gym> newList) {
+        this.gymList = newList;
+        notifyDataSetChanged();
     }
 
     public static class GymViewHolder extends RecyclerView.ViewHolder {
@@ -76,10 +79,5 @@ public class GymAdapter extends RecyclerView.Adapter<GymAdapter.GymViewHolder> {
             tvMachine1 = itemView.findViewById(R.id.tv_machine1);
             tvMachine2 = itemView.findViewById(R.id.tv_machine2);
         }
-    }
-
-    public void updateList(List<Gym> newList) {
-        this.gymList = newList;
-        notifyDataSetChanged();
     }
 }
