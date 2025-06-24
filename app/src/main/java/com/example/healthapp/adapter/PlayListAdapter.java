@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,7 +37,7 @@ public class PlayListAdapter extends RecyclerView.Adapter<PlayListAdapter.CardVi
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
         YoutubeLink item = cardList.get(position);
-        // 썸네일 이미지 로드 (예: Glide/Picasso 사용 권장)
+        // 썸네일 이미지 로드
         Glide.with(context).load(item.getThumbnailUrl()).into(holder.youtubeThumbnail);
 
         holder.youtubeThumbnail.setOnClickListener(v -> {
@@ -55,8 +54,6 @@ public class PlayListAdapter extends RecyclerView.Adapter<PlayListAdapter.CardVi
 
     static class CardViewHolder extends RecyclerView.ViewHolder {
         ImageView youtubeThumbnail;
-        TextView cardTitle;
-
         CardViewHolder(@NonNull View itemView) {
             super(itemView);
             youtubeThumbnail = itemView.findViewById(R.id.youtube_thumbnail);

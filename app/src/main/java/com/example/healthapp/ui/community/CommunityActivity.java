@@ -30,12 +30,13 @@ import java.util.HashMap;
 
 public class CommunityActivity extends AppCompatActivity {
     private FloatingActionButton writeBtn;
-    private String selectedWorkout,selectedMachine,etc;
+    private String selectedWorkout, selectedMachine, etc;
     private RecyclerView recyclerView;
     private CommunityAdapter adapter;
     private ArrayList<UserTip> tipList;
-    private HashMap<UserTip,String> keyMap;
+    private HashMap<UserTip, String> keyMap;
     private DatabaseReference myDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +91,7 @@ public class CommunityActivity extends AppCompatActivity {
                     myDB.child(tipKey).child("likes").setValue(tip.getLikes() + 1);
                 }
             }
+
             // 싫어요
             @Override
             public void onDislikeClick(UserTip tip) {
@@ -104,7 +106,6 @@ public class CommunityActivity extends AppCompatActivity {
 
     }
 
-    // 닉네임을 비동기로 불러와서 다이얼로그에 전달
     private void showPostTipDialogWithNickname() {
         UserRepository userRepository = new UserRepository();
         userRepository.getNickname(new UserRepository.NicknameCallback() {
@@ -130,7 +131,7 @@ public class CommunityActivity extends AppCompatActivity {
         EditText etTipContent = dialogView.findViewById(R.id.et_tip_content);
 
         // TipDialogListener에 nickname, 선택 운동 정보 전달
-        TipDialogListener listener = new TipDialogListener(dialog, etTipContent, this, nickname, selectedWorkout,selectedMachine,etc);
+        TipDialogListener listener = new TipDialogListener(dialog, etTipContent, this, nickname, selectedWorkout, selectedMachine, etc);
 
         btnCancel.setOnClickListener(v -> dialog.dismiss());
         btnSubmit.setOnClickListener(listener);

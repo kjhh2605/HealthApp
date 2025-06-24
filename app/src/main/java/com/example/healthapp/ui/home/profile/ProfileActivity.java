@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseError;
 
 public class ProfileActivity extends AppCompatActivity {
     private EditText etNickname, etSquat, etBench, etDeadlift;
-    private Button btnModify, btnLogout;
+    private Button btnEdit, btnLogout;
     private boolean isEditMode = false;
     private UserRepository userRepository;
 
@@ -30,21 +30,21 @@ public class ProfileActivity extends AppCompatActivity {
         etSquat = findViewById(R.id.et_squat);
         etBench = findViewById(R.id.et_bench);
         etDeadlift = findViewById(R.id.et_deadlift);
-        btnModify = findViewById(R.id.btn_modify);
+        btnEdit = findViewById(R.id.btn_modify);
         btnLogout = findViewById(R.id.btn_logout);
 
         userRepository = new UserRepository();
 
         loadUserInfo();
 
-        btnModify.setOnClickListener(v -> {
+        btnEdit.setOnClickListener(v -> {
             if (!isEditMode) {
                 setEditMode(true);
-                btnModify.setText("저장하기");
+                btnEdit.setText("저장하기");
             } else {
                 saveUserInfo();
                 setEditMode(false);
-                btnModify.setText("수정하기");
+                btnEdit.setText("수정하기");
             }
         });
 
@@ -66,6 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
                 etSquat.setText(squat);
                 etDeadlift.setText(deadlift);
             }
+
             @Override
             public void onError(DatabaseError error) {
             }

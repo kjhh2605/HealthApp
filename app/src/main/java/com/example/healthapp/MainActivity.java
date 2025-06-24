@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 //        // 더미데이터 생성
 //        GymTestDataGenerator.addTestGyms();

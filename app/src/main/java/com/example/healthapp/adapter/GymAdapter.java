@@ -70,7 +70,6 @@ public class GymAdapter extends RecyclerView.Adapter<GymAdapter.GymViewHolder> {
 
     public static class GymViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvRegion, tvPrice, tvMachine1, tvMachine2;
-
         public GymViewHolder(View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tv_gym_name);

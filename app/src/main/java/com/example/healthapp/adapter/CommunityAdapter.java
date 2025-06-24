@@ -61,7 +61,7 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.Comm
     }
 
     public static class CommunityViewHolder extends RecyclerView.ViewHolder {
-        TextView tvWorkout, tvWriter, tvContent,tvLikeCount, tvDislikeCount, tvMachine, tvEtc;
+        TextView tvWorkout, tvWriter, tvContent, tvLikeCount, tvDislikeCount, tvMachine, tvEtc;
         ImageButton btnLike, btnDislike;
 
         public CommunityViewHolder(@NonNull View itemView) {

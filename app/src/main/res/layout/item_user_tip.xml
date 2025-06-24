@@ -38,8 +38,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="닉네임"
-                android:textSize="14sp"
-                android:textColor="#666666" />
+                android:textStyle="bold"
+                android:gravity="end"
+                android:textColor="#666666"
+                android:textSize="14sp" />
 
         </LinearLayout>
 

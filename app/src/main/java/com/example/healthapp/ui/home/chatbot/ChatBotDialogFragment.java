@@ -34,6 +34,7 @@ public class ChatBotDialogFragment extends DialogFragment {
     private RecyclerView rvChat;
     private EditText etInput;
     private Button btnSend;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class ChatBotDialogFragment extends DialogFragment {
         btnSend.setOnClickListener(v -> {
             String message = etInput.getText().toString();
             if (!message.isEmpty()) {
-                adapter.addMessage("user" , message);
+                adapter.addMessage("user", message);
                 etInput.setText("");
                 sendMessageToAI(message);
             }
@@ -58,9 +59,10 @@ public class ChatBotDialogFragment extends DialogFragment {
 
 
         // 다이얼로그 초기 메시지
-        adapter.addMessage("system","안녕하세요!");
+        adapter.addMessage("system", "안녕하세요!");
         return view;
     }
+
     private void sendMessageToAI(String userInput) {
         List<ChatMessage> messages = new ArrayList<>();
         messages.add(new ChatMessage("system", "당신은 운동 앱의 챗봇입니다. 운동과 관련한 질문에만 200자 이내로 대답해주세요. 마크다운이나 참고한 링크의 주석 등 불필요한 형식([2],[3] 등)은 제외해주세요."));
@@ -77,10 +79,10 @@ public class ChatBotDialogFragment extends DialogFragment {
                         adapter.addMessage("system", answer);
                         scrollToLastMessage(rvChat);
                     } else {
-                        adapter.addMessage("system","오류가 발생했습니다");
+                        adapter.addMessage("system", "오류가 발생했습니다");
                     }
                 } else {
-                    adapter.addMessage("system","답변을 가져오는 데 실패했습니다. (코드: " + response.code() + ")");
+                    adapter.addMessage("system", "답변을 가져오는 데 실패했습니다. (코드: " + response.code() + ")");
                     if (response.errorBody() != null) {
                         try {
                             String error = response.errorBody().string();
@@ -95,11 +97,12 @@ public class ChatBotDialogFragment extends DialogFragment {
             @Override
             public void onFailure(Call<ChatResponse> call, Throwable t) {
                 t.printStackTrace(); // 로그 확인
-                adapter.addMessage("system","오류가 발생했습니다.");
+                adapter.addMessage("system", "오류가 발생했습니다.");
             }
 
         });
     }
+
     private void scrollToLastMessage(RecyclerView rvChat) {
         if (adapter.getItemCount() > 0) {
             rvChat.smoothScrollToPosition(adapter.getItemCount() - 1);

@@ -19,30 +19,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GymInfoBottomSheet extends BottomSheetDialogFragment {
-    // 인자 키
     private static final String ARG_GYM = "gym";
     private static final String ARG_IMAGE_RES = "imageRes";
 
-    // Gym 객체로 인스턴스 생성 (이미지 리소스 고정)
     public static GymInfoBottomSheet newInstance(Gym gym) {
         GymInfoBottomSheet fragment = new GymInfoBottomSheet();
         Bundle args = new Bundle();
         args.putSerializable(ARG_GYM, (Serializable) gym);
-        args.putInt(ARG_IMAGE_RES, R.drawable.gym_default); // 임의의 고정 이미지
+        args.putInt(ARG_IMAGE_RES, R.drawable.gym_default); // 임의 이미지로 고정
         fragment.setArguments(args);
         return fragment;
     }
-
-    // Gym 객체와 이미지 리소스로 인스턴스 생성 (필요시 사용)
-    public static GymInfoBottomSheet newInstance(Gym gym, int imageRes) {
-        GymInfoBottomSheet fragment = new GymInfoBottomSheet();
-        Bundle args = new Bundle();
-        args.putSerializable(ARG_GYM, (Serializable) gym);
-        args.putInt(ARG_IMAGE_RES, imageRes);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

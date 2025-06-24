@@ -37,12 +37,6 @@ public class StartActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // 구글 로그인
-//        btnGoogleLogin.setOnClickListener(v->{
-//            Intent intent = new Intent(StartActivity.this, GoogleLoginActivity.class);
-//            startActivity(intent);
-//        });
-
         // 이메일 계정 로그인
         btnEmailLogin.setOnClickListener(v->{
             Intent intent = new Intent(StartActivity.this, EmailLoginActivity.class);

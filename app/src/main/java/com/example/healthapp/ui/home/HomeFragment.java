@@ -90,6 +90,7 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+
     private void loadHotTips() {
         communityRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -118,9 +119,10 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-    private void loadPlayList(){
+
+    private void loadPlayList() {
         playList = new ArrayList<>();
-        playList.add(new YoutubeLink( "https://img.youtube.com/vi/I2mo7a9XHnM/hqdefault.jpg", "https://www.youtube.com/watch?v=I2mo7a9XHnM"));
+        playList.add(new YoutubeLink("https://img.youtube.com/vi/I2mo7a9XHnM/hqdefault.jpg", "https://www.youtube.com/watch?v=I2mo7a9XHnM"));
         playList.add(new YoutubeLink("https://img.youtube.com/vi/WnrIX9Ak1wA/hqdefault.jpg", "https://www.youtube.com/watch?v=WnrIX9Ak1wA"));
         playList.add(new YoutubeLink("https://img.youtube.com/vi/PN7lP0h68I4/hqdefault.jpg", "https://www.youtube.com/watch?v=PN7lP0h68I4"));
         playList.add(new YoutubeLink("https://img.youtube.com/vi/YuHPU6rvBXA/hqdefault.jpg", "https://www.youtube.com/watch?v=YuHPU6rvBXA"));

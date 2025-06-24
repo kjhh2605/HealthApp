@@ -33,7 +33,7 @@ public class ChatBotAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        if (viewType == 0) { // 챗봇/시스템
+        if (viewType == 0) { // 챗봇
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_left, parent, false);
             return new ChatViewHolder(view);
         } else { // user
@@ -62,7 +62,7 @@ public class ChatBotAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvMessage = itemView.findViewById(R.id.tv_chat_left); // 실제 id 확인 필요!
+            tvMessage = itemView.findViewById(R.id.tv_chat_left);
         }
     }
 
@@ -71,7 +71,7 @@ public class ChatBotAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvUserMessage = itemView.findViewById(R.id.tv_chat_right); // 실제 id 확인 필요!
+            tvUserMessage = itemView.findViewById(R.id.tv_chat_right);
         }
     }
 }

@@ -8,9 +8,7 @@ public class UserTip {
     private String machine;
     private String context;
     private String etc;
-    private String weightInfo;
     private int likes;
-
     private int dislikes;
 
     public UserTip() {
@@ -94,6 +92,5 @@ public class UserTip {
     public int hashCode() {
         return Objects.hash(nickname, context);
     }
-
 
 }

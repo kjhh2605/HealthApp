@@ -42,6 +42,7 @@ public class SearchGymFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_search_gym, container, false);
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -58,7 +59,8 @@ public class SearchGymFragment extends Fragment {
         setRandomHint();
         editSearch.addTextChangedListener(new android.text.TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -66,7 +68,8 @@ public class SearchGymFragment extends Fragment {
             }
 
             @Override
-            public void afterTextChanged(android.text.Editable s) {}
+            public void afterTextChanged(android.text.Editable s) {
+            }
         });
 
         myDB.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -78,7 +81,7 @@ public class SearchGymFragment extends Fragment {
                     gymList.add(gym);
                 }
                 adapter.notifyDataSetChanged(); //리스트 저장 & 새로고침
-                resultCount.setText("전체 "+String.valueOf(gymList.size())+"개");
+                resultCount.setText("전체 " + String.valueOf(gymList.size()) + "개");
             }
 
             @Override
@@ -90,7 +93,7 @@ public class SearchGymFragment extends Fragment {
         adapter = new GymAdapter(gymList, getContext(), new GymAdapter.OnGymClickListener() {
             @Override
             public void onGymClick(Gym gym) {
-                // 예시: 바텀시트 다이얼로그 띄우기
+                // 헬스장 상세 정보 다이어로그
                 GymInfoBottomSheet
                         .newInstance(gym)
                         .show(getParentFragmentManager(), "GymInfoBottomSheet");
@@ -101,8 +104,9 @@ public class SearchGymFragment extends Fragment {
 
 
     }
+
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         setRandomHint();
     }
@@ -126,7 +130,6 @@ public class SearchGymFragment extends Fragment {
         String mainHint = hints[randomIndex][0];
         String example = hints[randomIndex][1];
 
-        // 줄바꿈 및 ex 부분 작은 글씨 적용
         SpannableStringBuilder ssb = new SpannableStringBuilder();
         ssb.append(mainHint);
         ssb.append("\n");

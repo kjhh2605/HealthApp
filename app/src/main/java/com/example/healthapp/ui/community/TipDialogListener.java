@@ -20,7 +20,7 @@ public class TipDialogListener implements View.OnClickListener {
     private final String nickname;
     private final String workout, machine, etc;
 
-    public TipDialogListener(AlertDialog dialog, EditText etTipContent, Context context, String nickname,String workout,String machine,String etc) {
+    public TipDialogListener(AlertDialog dialog, EditText etTipContent, Context context, String nickname, String workout, String machine, String etc) {
         this.dialog = dialog;
         this.etTipContent = etTipContent;
         this.context = context;
@@ -40,7 +40,7 @@ public class TipDialogListener implements View.OnClickListener {
             if (tip.isEmpty()) {
                 Toast.makeText(context, "내용을 입력하세요!", Toast.LENGTH_SHORT).show();
                 return;
-            }else{
+            } else {
                 UserTip userTip = new UserTip(nickname, workout, machine, tip, etc);
                 DatabaseReference ref = MyFirebaseDB.getDB().child("Community").child(workout);
                 ref.push().setValue(userTip)
